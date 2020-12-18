@@ -2,3 +2,8 @@
 venv
 .idea
 *.pyc
+
+# SCRIPTS PERSONALIZADOS
+runserver.sh
+makemigrations.sh
+migrate.sh
