@@ -29,10 +29,17 @@ class FuncionarioCreate(CreateView):
   fields = ['nome', 'departamentos']
 
   def form_valid(self, form):
+    # Salvando funcionário temporariamente em memória
     funcionario = form.save(commit=False)
+
+    """
+    Coletando campos faltantes do model
+    contidos na sessão
+    """
     username = funcionario.nome.split(' ')[0] + ' ' + funcionario.nome.split(' ')[1]
     funcionario.empresa = self.request.user.funcionario.empresa
     funcionario.user = User.objects.create(username=username)
+    # armazenando funcionário no banco
     funcionario.save()
     
     return super(FuncionarioCreate, self).form_valid(form)
