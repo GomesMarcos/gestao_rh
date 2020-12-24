@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <form method="post">
+    {% csrf_token %}
+
+    <h1>Tem certeza de que deseja remover o lançamento de hora {{ object }}?</h1>
+    <button class="btn btn-danger" type="submit">Confirmar</button>
+  </form>
+{% endblock main %}
