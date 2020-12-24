@@ -1,6 +1,11 @@
-*.sqlite3
-venv
+# DIRETÓRIOS
 .idea
+venv
+media
+.vscode
+
+# TIPOS DE ARQUIVO
+*.sqlite3
 *.pyc
 
 # SCRIPTS PERSONALIZADOS

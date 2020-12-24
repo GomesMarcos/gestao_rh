@@ -8,7 +8,29 @@
     
     {{  form | bootstrap }}
     
-    <button class="btn btn-primary" type="submit">Salvar</button>
+    <button class="btn btn-primary mt-3" type="submit">Salvar</button>
   </form>
+
+  {% if object.documento_set %}
+    <ul class="list-group mt-3">
+      {% for doc in object.documento_set.all %}
+        
+      <a href="{{ doc.arquivo.url }}">
+        <li class="list-group-item">
+          {{ doc }}
+        </li>
+      </a>
+      
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+
+  
+  {% if object %}
+    
+    <a class="btn btn-primary mt-3" href="{% url 'create_documento' object.id %}">Adicionar Documento</a> 
+    
+  {% endif %}
 
 {% endblock main %}
