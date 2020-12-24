@@ -9,22 +9,23 @@ from django.urls import reverse_lazy
 
 from .models import RegistroHoraExtra
 
-class HoraExtraListList(ListView):
+
+class HoraExtraList(ListView):
   model = RegistroHoraExtra
 
   def get_queryset(self):
     empresa_logada = self.request.user.funcionario.empresa
-    return self.model.objects.filter(empresa=empresa_logada)
+    return self.model.objects.filter(funcionario__empresa=empresa_logada)
 
-class HoraExtraEditEdit(UpdateView):
+class HoraExtraEdit(UpdateView):
   model = RegistroHoraExtra
   fields = ['nome', 'departamentos']
 
-class HoraExtraDeleteDelete(DeleteView):
+class HoraExtraDelete(DeleteView):
   model = RegistroHoraExtra
   success_url = reverse_lazy('list_funcionarios')
 
-class HoraExtraCreateCreate(CreateView):
+class HoraExtraCreate(CreateView):
   model = RegistroHoraExtra
   fields = ['nome', 'departamentos']
 

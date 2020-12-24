@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  
+  <ul>
+    {% for hora_extra in object_list %}
+      <li>
+        <a href="{% url 'update_hora_extra' hora_extra.id %}">Motivo: {{ hora_extra }} - Hora(s): {{ hora_extra.horas }} </a>
+        &nbsp;
+        <a class="btn btn-danger" href="{% url 'delete_hora_extra' hora_extra.id %}">Deletar</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-info" href=" {% url 'create_hora_extra' %} ">Lançar Hora Extra</a>
+
+{% endblock main%}
