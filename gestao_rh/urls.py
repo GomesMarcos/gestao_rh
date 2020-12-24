@@ -14,4 +14,5 @@ urlpatterns = [
     path('documentos/', include('apps.documentos.urls')),
     path('empresas/', include('apps.empresas.urls')),
     path('funcionarios/', include('apps.funcionarios.urls')),
+    path('horas-extras/', include('apps.registro_hora_extra.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
