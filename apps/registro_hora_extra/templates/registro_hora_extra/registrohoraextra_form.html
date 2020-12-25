@@ -3,12 +3,35 @@
 
 {% block main %}
 
+  
+  {% if object %}
+    <h1 class="text-center">Editar {{ object }}</h1>
+  
+  {% else %}
+
+  <h1 class="text-center">Novo lançamento</h1>
+  
+  {% endif %}
+    
+
+  
   <form method="post">
     {% csrf_token %}
     
     {{  form | bootstrap }}
+
+    <div class="mt-3">
+      <button class="btn btn-primary mr-3" type="submit">Salvar</button>
+      
+      {% if object %}
+        <a class="btn btn-danger" href="{% url 'delete_hora_extra' object.id %}">Deletar</a>
+      {% endif %}
+
+    </div>
     
-    <button class="btn btn-primary mt-3" type="submit">Salvar</button>
   </form>
+
+  
+    
 
 {% endblock main %}

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
@@ -8,33 +9,42 @@
   <a class="btn btn-info mt-3" href=" {% url 'create_hora_extra' %} ">Lançar Hora Extra</a>
 </p>
 
-<table class="table">
-  <thead>
-    <th>Funcionario</th>
-    <th>Motivo</th>
-    <th>Horas</th>
-    <th class="text-center">Ações</th>
-  </thead>
-  <tbody>
-    
-    {% for hora_extra in object_list %}
-    
-    <tr>
-      <td>Funcionario: {{ hora_extra.funcionario }}</td>
-      <td>Motivo: {{ hora_extra }}</td>
-      <td>Horas: {{ hora_extra.horas }}</td>
-      <td>
-        <div class="d-flex flex-column">
-          <a class="btn btn-outline-dark p-2" href="{% url 'update_hora_extra' hora_extra.id %}">Editar</a>
-          <a class="btn btn-danger mt-3 p-2" href="{% url 'delete_hora_extra' hora_extra.id %}">Deletar</a>
-        </div>
-      </td>
-    </tr>
 
-    {% endfor %}
+{% if object_list %}
 
-  </tbody>
-</table>
+  <table class="table">
+    <thead>
+      <th>Funcionario</th>
+      <th>Motivo</th>
+      <th>Horas</th>
+      <th class="text-center">Ações</th>
+    </thead>
+    <tbody>
+
+      {% for hora_extra in object_list %}
+
+      <tr>
+        <td>Funcionario: {{ hora_extra.funcionario }}</td>
+        <td>Motivo: {{ hora_extra }}</td>
+        <td>Horas: {{ hora_extra.horas }}</td>
+        <td>
+          <div class="d-flex flex-column">
+            <a class="btn btn-outline-dark p-2" href="{% url 'update_hora_extra' hora_extra.id %}">Editar</a>
+            <a class="btn btn-danger mt-3 p-2" href="{% url 'delete_hora_extra' hora_extra.id %}">Deletar</a>
+          </div>
+        </td>
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+{% else %}
+
+<h3>Não existem registros de hora extra</h3>
+
+{% endif %}
 
 
 {% endblock main%}
