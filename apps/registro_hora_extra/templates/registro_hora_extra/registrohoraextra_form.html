@@ -24,14 +24,13 @@
       <button class="btn btn-primary mr-3" type="submit">Salvar</button>
       
       {% if object %}
-        <a class="btn btn-danger" href="{% url 'delete_hora_extra' object.id %}">Deletar</a>
+        <a class="mx-3 btn btn-danger" href="{% url 'delete_hora_extra' object.id %}">Deletar</a>
       {% endif %}
 
     </div>
     
   </form>
 
-  
-    
+  <button class="btn btn-outline-dark mt-3" onclick="window.history.back()">Voltar</button>
 
 {% endblock main %}

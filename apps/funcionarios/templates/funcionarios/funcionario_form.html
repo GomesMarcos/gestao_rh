@@ -12,7 +12,9 @@
   </form>
 
   {% if object.documento_set %}
-    <ul class="list-group mt-3">
+
+    <ul class="list-group mt-5">
+
       {% for doc in object.documento_set.all %}
         
       <a href="{{ doc.arquivo.url }}">
@@ -22,15 +24,38 @@
       </a>
       
       {% endfor %}
+
     </ul>
 
   {% endif %}
-
-  
+    
   {% if object %}
     
     <a class="btn btn-primary mt-3" href="{% url 'create_documento' object.id %}">Adicionar Documento</a> 
     
   {% endif %}
 
-{% endblock main %}
+  {% if object.registrohoraextra_set %}
+
+    <ul class="list-group mt-5">
+
+      {% for hora_extra in object.registrohoraextra_set.all %}
+        <a href="{% url 'update_hora_extra_funcionario' hora_extra.id %}">
+          <li class="list-group-item">
+            {{ hora_extra.motivo }} | {{ hora_extra.horas }}
+          </li>
+        </a>
+
+      {% endfor %}
+
+    </ul>
+
+    <h3>Total de horas extras: {{ object.total_horas_extras }}</h3>
+
+  {% endif %}
+
+  <a class="btn btn-primary mt-3" href="{% url 'create_hora_extra' %}">Lançar Hora Extra</a> 
+  
+  <button class="btn btn-outline-dark" onclick="window.history.back()">Voltar</button>
+
+  {% endblock main %}
